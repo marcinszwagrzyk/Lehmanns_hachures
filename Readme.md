@@ -1,17 +1,16 @@
-Automating processigng of DEM and slope, asppect and hillshade files to
+Automating processing of DEM and slope, aspect and hillside files to
 into a relief representation inspired by the original Lehmanns's method.
 
 
 
-
-Code is here:
+[Code with whole procedure is here](Lehmanns_Shrafure.ipynb) <br>
 <link>
 
-Several parameters: 
-number of countours, 
-distnce between sampling points on contours
-multiplier factor (each line length is calculated based on a slope at point, multiplied by the multiplier factor)
-should be manually adjusted to fit the terrain and relief characteristics
+Several parameters: <br>
+- number of contours, <br>
+- distance between sampling points on contours<br>
+- multiplier factor (each line length is calculated based on a slope at point, multiplied by the multiplier factor)
+<br>should be manually adjusted to fit the terrain and relief characteristics
 
 
 
