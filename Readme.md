@@ -4,7 +4,7 @@ Inspired by the [blogpost](https://robinhawkes.com/blog/qgis-monochrome-hachures
 
 
 
-[Code with whole procedure is here](Lehmanns_Shrafure.ipynb) <br>
+[Code with whole procedure is here](Lehmanns_Chachure.ipynb) <br>
 <link>
 
 Several parameters: <br>
