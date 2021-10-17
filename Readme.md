@@ -12,5 +12,7 @@ Several parameters: <br>
 - multiplier factor (each line length is calculated based on a slope at point, multiplied by the multiplier factor)
 <br>should be manually adjusted to fit the terrain and relief characteristics
 
+Final map for the Tatra mountains area looks like this:
+![Alt text](results/tatras.png "Title")
 
 
