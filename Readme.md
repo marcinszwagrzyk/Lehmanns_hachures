@@ -1,5 +1,6 @@
 Automating processing of DEM and slope, aspect and hillside files to
 into a relief representation inspired by the original Lehmanns's method.
+Inspired by the blogpost: 
 
 
 
@@ -13,6 +14,6 @@ Several parameters: <br>
 <br>should be manually adjusted to fit the terrain and relief characteristics
 
 Final map for the Tatra mountains area looks like this:
-![Alt text](results/tatras.png "Title")
+![](results/tatras.png "Title")
 
 
