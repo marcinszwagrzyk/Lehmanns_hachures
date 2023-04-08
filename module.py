@@ -42,7 +42,8 @@ def download_and_plot(place,
     station_pts_dist_max=200,
     station_pts_dist_min=25,
     line_width=1.5,
-    API_key=''):
+    API_key='',
+    data_folder=r'd:\git20\dem'):
 
     gdf = ox.geocode_to_gdf(place)
     islands = ox.geometries_from_place(place,  tags={"place": ["island", "islet"]})
@@ -53,16 +54,19 @@ def download_and_plot(place,
     
     flat_areas_slope = 0.04 # flat areas - below this slope areas will not be drawn, teraz to kompletnie nie pasuje!
 
-    # todo mkdirs
-    folder_shp = r'.\shp'
-    folder_res = r'.\results'
+    folder_shp = fr"{data_folder}\shp"
+
+    folder_res = fr"{data_folder}\results"
+    for path in folder_res, folder_shp:
+        if not os.path.exists(path):
+            os.mkdir(path)
 
     url = fr'https://portal.opentopography.org/API/globaldem?demtype=SRTMGL3&south={south}&north={north}&west={west}&east={east}&outputFormat=GTiff&API_Key={API_key}'
-    raster_dem_path = fr".\dem\dem_{place}.tif"
+    raster_dem_path = fr"{data_folder}\dem_{place}.tif"
     urllib.request.urlretrieve(url, raster_dem_path)
 
     input_raster = gdal.Open(raster_dem_path)
-    raster_dem_epsg_path = fr".\dem\dem_epsg_{place}.tif"
+    raster_dem_epsg_path = fr"{data_folder}\dem_{place}.tif"
     warp = gdal.Warp(raster_dem_epsg_path, input_raster, dstSRS=crs_adequate)
     warp = None # Closes the files
     input_raster = None
@@ -73,15 +77,15 @@ def download_and_plot(place,
     dem = rd.LoadGDAL(raster_dem_epsg_path)
     hillshade = es.hillshade(elevation)
     transform = src.transform
-    raster_hs_path = fr'.\dem\hs_{place}.tif'
+    raster_hs_path = fr"{data_folder}\hs_{place}.tif"
     export_raster(hillshade, raster_hs_path, transform, crs=crs_adequate)
 
     slope = rd.TerrainAttribute(dem, attrib='slope_riserun')
-    raster_slope_path = fr'.\dem\slope_{place}.tif'
+    raster_slope_path = fr"{data_folder}\slope_{place}.tif"
     export_raster(slope, raster_slope_path , transform, crs=crs_adequate)
 
     aspect = rd.TerrainAttribute(dem, attrib='aspect')
-    raster_aspect_path = fr'.\dem\aspect_{place}.tif'
+    raster_aspect_path = fr"{data_folder}\aspect_{place}.tif"
     export_raster(aspect, raster_aspect_path, transform, crs=crs_adequate)
 
     raster_slope = rio.open(raster_slope_path)
